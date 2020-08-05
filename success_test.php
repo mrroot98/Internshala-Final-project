@@ -3,14 +3,13 @@ require("includes/connection.php");
 if (!isset($_SESSION['email'])) {
     header('location: login.php');
 }
-
 $user_id = $_SESSION['id'];
-$item_ids_string = $_GET['itemid'];
+$item_ids_string = $_GET['itemsid'];
 $query = "UPDATE users_items SET status='Confirmed' WHERE user_id=" . $user_id . " AND item_id IN (" . $item_ids_string . ") and status='Added to cart'";
 mysqli_query($con, $query) or die($mysqli_error($con));
-header('location: cart.php');
 ?>
-<!--<!DOCTYPE html>
+?>
+<!DOCTYPE html>
 <html>
 	<head>
 		<title>Life Style Store</title>
@@ -21,7 +20,7 @@ header('location: cart.php');
 		<link rel="stylesheet" type="text/css" href="stylesheet.css">
 	</head>
 	<body>
-		<?php //include"includes/header.php"; ?>
+		<?php include"includes/header.php"; ?>
 		<div class="container" style="margin-top: 100px; margin-bottom:20%">
 			<div class="jumbotron">
 				<h3 style="text-align: center;"><b>Your order is confirmed. Thank you for shopping with us.</b></h3><hr>
@@ -29,7 +28,6 @@ header('location: cart.php');
 			</div>
 			
 		</div>
-		<?php //include"includes/footer.php"; ?>
+		<?php include"includes/footer.php"; ?>
 	</body>
 </html>
--->
